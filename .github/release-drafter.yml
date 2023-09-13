@@ -14,8 +14,8 @@ categories:
 exclude-labels:
   - 'skip-changelog'
 replacers:
-  - search: '/\[FN-(\d{4})\]/g'
-    replace: 'https://betconstruct.atlassian.net/browse/FN-$1'
+  - search: '/FN-\d{1,4}/g'
+    replace: '[FN-$1](https://betconstruct.atlassian.net/browse/FN-$1)'
 autolabeler:
   - label: 'bug'
     branch:
