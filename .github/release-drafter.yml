@@ -7,25 +7,22 @@ categories:
       - 'enhancement'
   - title: '🐛 Bug Fixes'
     labels:
-      - 'fix'
-      - 'bugfix'
       - 'bug'
       - 'hotfix'
   - title: '🧰 Maintenance'
     label: 'chore'
 exclude-labels:
   - 'skip-changelog'
+replacers:
+  - search: '/\[FN-(\d{4})\]/g'
+    replace: 'https://betconstruct.atlassian.net/browse/FN-$1'
 autolabeler:
   - label: 'bug'
     branch:
-      - '/fix\/.+/'
-    title:
-      - '/fix/i'
-  - label: 'enhancement'
+      - '/bugfix\/.+/'
+  - label: 'feature'
     branch:
       - '/feature\/.+/'
-    body:
-      - '/FTN-[0-9]{1,4}/'
 version-resolver:
   major:
     labels:
