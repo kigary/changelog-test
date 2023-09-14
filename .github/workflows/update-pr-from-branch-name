@@ -1,0 +1,19 @@
+---
+on: [pull_request]
+
+jobs:
+  update-pr:
+    permissions:
+      pull-requests: write
+    name: Update Pull Request from branch name
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Update Pull Request from branch name action step
+        id: update-pr
+        uses: kigary/update-pr-from-branch-name@main
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          issue-ticket-regex: '(FN-\d{1,4})'
+          issue-tracker-url: 'https://betconstruct.atlassian.net/browse/'
