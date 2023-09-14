@@ -36,3 +36,4 @@ template: |
   ## Changes
 
   $CHANGES
+change-template: '* $TITLE'
