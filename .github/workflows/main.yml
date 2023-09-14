@@ -7,7 +7,7 @@ jobs:
     steps:
       - name: Hello world action step
         id: hello
-        uses: kigary/hello-world-javascript-action@739463b0ae6db9a4c287c11d3dc2f117f3afaa7c
+        uses: kigary/hello-world-javascript-action@v1.4
         with:
           who-to-greet: 'kigary'
       # Use the output from the `hello` step
