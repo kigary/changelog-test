@@ -1,4 +1,5 @@
 ---
+name: Update PR from branch name
 on: [pull_request]
 
 jobs:
