@@ -23,17 +23,15 @@ autolabeler:
   - label: 'feature'
     branch:
       - '/feature\/.+/'
-version-resolver:
-  major:
-    labels:
-      - 'major'
-  minor:
-    labels:
-      - 'minor'
-  patch:
-    labels:
-      - 'patch'
-  default: patch
+  - label: 'release'
+    branch:
+      - '/release\/.+/'
+  - label: 'skip-changelog'
+    branch:
+      - '/release\/.+/'
+  - label: 'skip-changelog'
+    branch:
+      - '/develop\/.+/'
 template: |
   ## Changes
 
