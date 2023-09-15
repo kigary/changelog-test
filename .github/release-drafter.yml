@@ -61,6 +61,4 @@ template: |
   ## Changes
 
   $CHANGES
-
-  $CONTRIBUTORS
 change-template: '* $TITLE'
