@@ -55,7 +55,8 @@ version-resolver:
   patch:
     labels:
       - 'hotfix'
-publish: 'true'
+publish: true
+latest: true
 template: |
   ## Changes
 
