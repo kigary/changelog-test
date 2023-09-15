@@ -43,7 +43,7 @@ autolabeler:
       - '/experimental\/.+/'
   - label: 'skip-changelog'
     branch:
-      - '/(release|develop|experimental).*/'
+      - '/(main|develop|release|experimental).*/'
 version-resolver:
   major:
     labels:
