@@ -10,8 +10,9 @@ categories:
       - 'bugfix'
       - 'hotfix'
   - title: '🧰 Maintenance'
-    label: 'refactor'
-    label: 'enhancement'
+    labels: 
+      - 'refactor'
+      - 'enhancement'
   - title: '📃 Documentation'
     label: 'documentation'
 exclude-labels:
