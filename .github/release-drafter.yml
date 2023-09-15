@@ -7,31 +7,54 @@ categories:
       - 'enhancement'
   - title: '🐛 Bug Fixes'
     labels:
-      - 'bug'
+      - 'bugfix'
       - 'hotfix'
   - title: '🧰 Maintenance'
-    label: 'chore'
+    label: 'refactor'
+    label: 'enhancement'
+  - title: '📃 Documentation'
+    label: 'documentation'
 exclude-labels:
   - 'skip-changelog'
 replacers:
   - search: '/FN-(\d{1,4})/g'
     replace: '[FN-$1](https://betconstruct.atlassian.net/browse/FN-$1)'
 autolabeler:
-  - label: 'bug'
+  - label: 'bugfix'
     branch:
       - '/bugfix\/.+/'
+  - label: 'hotfix'
+    branch:
+      - '/hotfix\/.+/'
+  - label: 'enhancement'
+    branch:
+      - '/enhancement\/.+/'
+  - label: 'refactor'
+    branch:
+      - '/refactor\/.+/'
   - label: 'feature'
     branch:
       - '/feature\/.+/'
   - label: 'release'
     branch:
       - '/release\/.+/'
+  - label: 'experimental'
+    branch:
+      - '/experimental\/.+/'
   - label: 'skip-changelog'
     branch:
-      - '/release\/.+/'
-  - label: 'skip-changelog'
-    branch:
-      - '/develop\/.+/'
+      - '/(release|develop|experimental).*/'
+version-resolver:
+  major:
+    labels:
+      - 'major'
+  minor:
+    labels:
+      - 'release'
+  patch:
+    labels:
+      - 'hotfix'
+publish: true
 template: |
   ## Changes
 
