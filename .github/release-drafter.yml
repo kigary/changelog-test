@@ -44,7 +44,7 @@ autolabeler:
       - '/experimental\/.+/'
   - label: 'skip-changelog'
     branch:
-      - '/(main|develop|release|experimental).*/'
+      - '/(main|develop|experimental).*/'
 version-resolver:
   major:
     labels:
@@ -55,7 +55,7 @@ version-resolver:
   patch:
     labels:
       - 'hotfix'
-publish: true
+publish: 'true'
 template: |
   ## Changes
 

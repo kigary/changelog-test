@@ -1,3 +1,3 @@
 (() => {
-  console.info('testtt');
+  console.info('testtt!!');
 })()
