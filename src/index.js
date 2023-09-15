@@ -5,3 +5,7 @@
 (() => {
     console.info('IMPORT ORDEER')
 })()
+
+(() => {
+    console.info('New Routing')
+})()
