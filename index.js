@@ -1,3 +1,3 @@
 (() => {
-    alert('aa!')
+    window.alert('aa!')
 })()
