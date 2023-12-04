@@ -1,0 +1,20 @@
+name: Label Approved
+
+on:
+  pull_request_review:
+    types: [edited, dismissed]
+
+jobs:
+  pull-request-approve:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: docker://tiangolo/label-approved:0.0.2
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        config: >
+          {
+            "ready for merge":
+              {
+                "number": 2
+              }
+          }
