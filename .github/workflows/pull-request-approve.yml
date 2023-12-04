@@ -1,20 +1,57 @@
-name: Label Approved
+name: Label on Approve
 
 on:
   pull_request_review:
-    types: [edited, dismissed]
+    types: [submitted, dismissed]
+  pull_request:
+    types: [review_requested, review_request_removed, opened, closed, reopened, edited]
 
 jobs:
-  pull-request-approve:
+  labelOnApprove:
     runs-on: ubuntu-latest
+    
     steps:
-    - uses: docker://tiangolo/label-approved:0.0.2
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Check if "ready for merge" label should be added
+      id: labelCheck
+      run: |
+        # Get the number of approvals on the pull request
+        APPROVALS=$(jq '.pull_request.reviews[] | select(.state=="APPROVED") | .user.login' $GITHUB_EVENT_PATH | sort -u | wc -l)
+        
+        if [ "$APPROVALS" -ge 2 ]; then
+          echo "2 or more approvals. Adding 'ready for merge' label."
+          echo "::set-output name=should_add_label::true"
+        else
+          echo "Less than 2 approvals. Removing 'ready for merge' label if exists."
+          echo "::set-output name=should_add_label::false"
+        fi
+      
+    - name: Add or remove label
+      if: steps.labelCheck.outputs.should_add_label == 'true' && !contains(github.event.issue.labels.*.name, 'ready for merge')
+      uses: actions/github-script@v5
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        config: >
-          {
-            "ready for merge":
-              {
-                "number": 2
-              }
-          }
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const labels = ['ready for merge'];
+          github.rest.issues.addLabels({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            labels: labels
+          });
+
+    - name: Remove label if needed
+      if: steps.labelCheck.outputs.should_add_label == 'false' && contains(github.event.issue.labels.*.name, 'ready for merge')
+      uses: actions/github-script@v5
+      with:
+        github-token: ${{ secrets.GITHUB_TOKEN }}
+        script: |
+          const labels = ['ready for merge'];
+          github.rest.issues.removeLabel({
+            issue_number: context.issue.number,
+            owner: context.repo.owner,
+            repo: context.repo.repo,
+            name: labels[0]
+          });
