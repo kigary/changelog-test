@@ -2,7 +2,7 @@ name: Label Approved
 
 on:
   pull_request_review:
-    types: [edited, dismissed]
+    types: [submitted, edited, dismissed]
 
 jobs:
   pull-request-approve:
