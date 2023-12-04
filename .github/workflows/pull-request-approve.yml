@@ -43,7 +43,7 @@ jobs:
           });
 
     - name: Remove label if needed
-      if: steps.labelCheck.outputs.should_add_label == 'false' || contains(github.event.issue.labels.*.name, 'ready for merge')
+      if: steps.labelCheck.outputs.should_add_label == 'false' && contains(github.event.issue.labels.*.name, 'ready for merge')
       uses: actions/github-script@v5
       with:
         github-token: ${{ secrets.GITHUB_TOKEN }}
